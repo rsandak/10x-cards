@@ -180,4 +180,4 @@ CREATE POLICY "Users can insert their own error logs"
     WITH CHECK (auth.uid() = user_id);
 ```
 
-## 5. Pozostałe uwagi
+## 5. Pozostałe uwagii
