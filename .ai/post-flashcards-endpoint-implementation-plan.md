@@ -16,18 +16,19 @@ Endpoint umożliwia tworzenie nowych fiszek – pojedynczo lub zbiorczo. Obsług
         "source": "Manual",
         "generationId": 123  // opcjonalnie, jeśli fiszka pochodzi z generacji AI
       }
-    ]
+    ],
+    "generationId": 123  // opcjonalnie, domyślny generationId dla wszystkich fiszek w batch
   }
   ```
 - Walidacje:
   - front: 1-200 znaków
   - back: 1-500 znaków
   - source: wartość 'Manual', 'AI-full' lub 'AI-edited'
-  - Jeśli source to 'AI-full' lub 'AI-edited', generationId jest wymagany
+  - Jeśli source to 'AI-full' lub 'AI-edited', generationId jest wymagany (może być podany na poziomie pojedynczej fiszki lub całej komendy)
 
 ## 3. Wykorzystywane typy
 - `CreateFlashcardDTO: { front: string; back: string; source: "Manual" | "AI-full" | "AI-edited"; generationId?: number }`
-- `CreateFlashcardsCommand: { flashcards: CreateFlashcardDTO[] }`
+- `CreateFlashcardsCommand: { flashcards: CreateFlashcardDTO[]; generationId?: number }`
 
 ## 4. Szczegóły odpowiedzi
 - Sukces (201 Created):

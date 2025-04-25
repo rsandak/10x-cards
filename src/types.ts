@@ -67,6 +67,7 @@ export interface CreateFlashcardDTO {
 
 export interface CreateFlashcardsCommand {
   flashcards: CreateFlashcardDTO[]; // Must contain at least one flashcard
+  generationId?: number;
 }
 
 // Command model for updating a flashcard via PUT /flashcards/{id}

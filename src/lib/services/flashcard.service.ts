@@ -1,16 +1,19 @@
 import type { SupabaseClient } from "../../db/supabase.client";
-import type { CreateFlashcardDTO, FlashcardDTO } from "../../types";
+import type { CreateFlashcardDTO, FlashcardDTO, CreateFlashcardsCommand } from "../../types";
 
 export class FlashcardService {
   constructor(private readonly supabase: SupabaseClient) {}
 
-  async createFlashcards(flashcards: CreateFlashcardDTO[], userId: string): Promise<FlashcardDTO[]> {
+  async createFlashcards(
+    { flashcards, generationId }: CreateFlashcardsCommand,
+    userId: string
+  ): Promise<FlashcardDTO[]> {
     console.log(`Creating ${flashcards.length} flashcards for user ${userId}`);
 
-    const flashcardsToInsert = flashcards.map(({ generationId, ...rest }) => ({
+    const flashcardsToInsert = flashcards.map(({ generationId: cardGenerationId, ...rest }) => ({
       ...rest,
       user_id: userId,
-      generation_id: generationId,
+      generation_id: cardGenerationId ?? generationId,
     }));
 
     try {
@@ -34,9 +37,8 @@ export class FlashcardService {
       }
 
       // Update generation statistics for AI flashcards
-      const aiFlashcards = flashcards.filter((f) => f.source !== "Manual" && f.generationId);
-      if (aiFlashcards.length > 0 && aiFlashcards[0].generationId) {
-        const generationId = aiFlashcards[0].generationId;
+      const aiFlashcards = flashcards.filter((f) => f.source !== "Manual");
+      if (aiFlashcards.length > 0 && generationId) {
         console.log(`Updating stats for generation ${generationId}`);
         await this.updateGenerationStats(aiFlashcards, generationId);
       }

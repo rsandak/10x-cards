@@ -15,7 +15,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const flashcardService = new FlashcardService(locals.supabase);
 
     // Create flashcards
-    const createdFlashcards = await flashcardService.createFlashcards(command.flashcards, DEFAULT_USER_ID);
+    const createdFlashcards = await flashcardService.createFlashcards(command, DEFAULT_USER_ID);
 
     return new Response(JSON.stringify(createdFlashcards), {
       status: 201,

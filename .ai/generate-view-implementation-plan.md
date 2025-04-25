@@ -124,6 +124,7 @@ Widok będzie dostępny pod ścieżką `/generate`.
   ```typescript
   type CreateFlashcardsCommand = {
     flashcards: CreateFlashcardDTO[];
+    generationId?: number; // opcjonalny ID generacji dla wszystkich fiszek w batch
   }
   ```
 

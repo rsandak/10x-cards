@@ -25,6 +25,7 @@ const createFlashcardSchema = z
 
 export const createFlashcardsCommandSchema = z.object({
   flashcards: z.array(createFlashcardSchema).min(1),
+  generationId: z.number().optional(),
 });
 
 export type CreateFlashcardsCommandValidated = z.infer<typeof createFlashcardsCommandSchema>;
