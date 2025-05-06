@@ -91,7 +91,7 @@ Funkcjonalności, które NIE wchodzą w zakres MVP:
 
 - ID: US-004
 - Tytuł: Zarządzanie zapisanymi fiszkami
-- Opis: Jakozalogowany użytkownik chcę przeglądać, wyszukiwać, edytować oraz usuwać zapisane fiszki, aby móc utrzymywać aktualność i porządek w mojej bazie wiedzy.
+- Opis: Jako zalogowany użytkownik chcę przeglądać, wyszukiwać, edytować oraz usuwać zapisane fiszki, aby móc utrzymywać aktualność i porządek w mojej bazie wiedzy.
 - Kryteria akceptacji:
   - Widok zarządzania fiszkami jest dostępny poprzez kliknięcie zakładki 'Moje fiszki' w menu głównym.
   - Lista zapisanych fiszek wyświetla wszystkie dostępne fiszki.
@@ -122,6 +122,7 @@ Funkcjonalności, które NIE wchodzą w zakres MVP:
   - Formularz logowania zbiera dane (np. email, hasło) i jest walidowany.
   - Mechanizm logowania weryfikuje dane i zapewnia bezpieczny dostęp.
   - W przypadku nieudanego logowania, użytkownik zobaczy komunikat o błędzie z instrukcjami.
+  - Odzyskiwanie hasła jest możliwe.
 
 ### US-007
 
