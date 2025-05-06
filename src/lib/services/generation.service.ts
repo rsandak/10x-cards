@@ -58,7 +58,7 @@ export class GenerationService {
         back: string;
       }
 
-      const flashcardCandidates = (response.content as FlashcardResponse[]).map((card) => ({
+      const flashcardCandidates = (response.content as unknown as FlashcardResponse[]).map((card) => ({
         front: card.front,
         back: card.back,
         source: "AI-full" as const,

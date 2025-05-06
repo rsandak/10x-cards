@@ -1,7 +1,9 @@
 # API Endpoint Implementation Plan: POST /generations
 
 ## 1. Przegląd punktu końcowego
+
 Endpoint POST /generations służy do generowania propozycji fiszek na podstawie dostarczonego tekstu wejściowego (source_text). Endpoint:
+
 - waliduje długość tekstu,
 - wywołuje zewnętrzny serwis LLM w celu wygenerowania kandydatów fiszek
 - zapisuje metadane procesu generacji
@@ -9,6 +11,7 @@ Endpoint POST /generations służy do generowania propozycji fiszek na podstawie
 - w przypadku błędów, loguje je do tabeli generation_error_logs.
 
 ## 2. Szczegóły żądania
+
 - Metoda HTTP: POST
 - Struktura URL: /generations
 - Parametry:
@@ -16,6 +19,7 @@ Endpoint POST /generations służy do generowania propozycji fiszek na podstawie
     - source_text (string, długość 1000 – 10000 znaków)
   - Opcjonalne: brak
 - Request Body (przykład):
+
   ```json
   {
     "source_text": "Example input text with required length..."
@@ -23,6 +27,7 @@ Endpoint POST /generations służy do generowania propozycji fiszek na podstawie
   ```
 
 ## 3. Wykorzystywane typy
+
 - `GenerateFlashcardsCommand`: reprezentuje dane wejściowe z polem source_text.
 - `GenerateFlashcardsResponseDTO`: model odpowiedzi zawierający:
   - `generationId`: number
@@ -34,7 +39,9 @@ Endpoint POST /generations służy do generowania propozycji fiszek na podstawie
   - `source`: wartość stała "AI-full"
 
 ## 4. Szczegóły odpowiedzi
+
 - Sukces (201 Created):
+
   ```json
   {
     "generationId": 123,
@@ -48,12 +55,14 @@ Endpoint POST /generations służy do generowania propozycji fiszek na podstawie
     ]
   }
   ```
+
 - Potencjalne błędy:
   - 400 Bad Request: nieprawidłowe dane wejściowe (np. source_text nie spełnia wymagań długościowych)
   - 401 Unauthorized: brak ważnego tokena autoryzacyjnego
   - 500 Internal Server Error: błąd wewnętrzny, np. niepowodzenie wywołania LLM lub problem z zapisem do bazy
 
 ## 5. Przepływ danych
+
 1. Odbiór żądania POST zawierającego w body `source_text`.
 2. Walidacja danych wejściowych (sprawdzenie długości 1000 – 10000 znaków) przy użyciu narzędzia walidacyjnego (np. zod).
 3. Przekazanie `source_text` do warstwy service (`generation.service`), która wywołuje zewnętrzne API LLM.
@@ -63,6 +72,7 @@ Endpoint POST /generations służy do generowania propozycji fiszek na podstawie
 7. W przypadku błędu, zapis logu błędu w tabeli `generation_error_logs`.
 
 ## 6. Względy bezpieczeństwa
+
 - Uwierzytelnianie: Endpoint wymaga ważnego tokena autoryzacyjnego (Supabase Auth).
 - Autoryzacja: Stosowane są polityki RLS, które zapewniają, że użytkownik ma dostęp tylko do swoich danych.
 - Walidacja: Stała walidacja danych wejściowych przy użyciu zod, aby zapobiec przetwarzaniu nieprawidłowych danych.
@@ -70,6 +80,7 @@ Endpoint POST /generations służy do generowania propozycji fiszek na podstawie
 - Ograniczona ekspozycja błędów: Szczegóły błędów nie powinny byc zwracane utytkownikowi. Niepełne informacje o błędach powinny być logowane wewnętrznie.
 
 ## 7. Obsługa błędów
+
 - Walidacja danych wejściowych: Zwrócenie 400 Bad Request, jeśli `source_text` nie spełnia kryteriów.
 - Problemy z autoryzacją: Zwrócenie 401 Unauthorized przy braku lub niewłaściwym tokenie.
 - Błędy operacyjne:
@@ -77,12 +88,14 @@ Endpoint POST /generations służy do generowania propozycji fiszek na podstawie
   - Błędy podczas zapisu danych do bazy skutkują odpowiedzią 500 Internal Server Error.
 
 ## 8. Rozważania dotyczące wydajności
+
 - Optymalizacja zapytań dzięki użyciu indeksów (m.in. na kolumnie user_id).
-- Ustalenie limitu czasu (60 sekund) oczekiwania na odpowiedź z serwisu AI, aby nie blokować zasobów aplikacji. 
+- Ustalenie limitu czasu (60 sekund) oczekiwania na odpowiedź z serwisu AI, aby nie blokować zasobów aplikacji.
 - Monitorowanie wydajności wywołań do LLM API oraz implementacja mechanizmu retry w razie niepowodzeń.
 - Asynchroniczne wywołania do zewnętrznego API tam, gdzie to możliwe, aby nie blokować głównego przetwarzania.
 
 ## 9. Etapy wdrożenia
+
 1. Stworzenie walidatora danych wejściowych przy użyciu zod w warstwie endpointu.
 2. Implementacja warstwy service (`generation.service`), która obejmuje:
    - Walidację danych wejściowych.

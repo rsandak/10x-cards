@@ -1,12 +1,15 @@
 # Dokument wymagań produktu (PRD) - 10x-cards
 
 ## 1. Przegląd produktu
+
 10x-cards to aplikacja webowa służąca do tworzenia i zarządzania fiszkami, wykorzystywana w metodzie spaced repetition. Aplikacja umożliwia dwie metody tworzenia fiszek – manualne oraz generowane przez AI. Aplikacja wykorzystuje modele LLM (poprzez API) do generowania sugestii fiszek na podstawie dostarczonego tekstu.
 
 ## 2. Problem użytkownika
+
 Ręczne tworzenie wysokiej jakości fiszek edukacyjnych jest czasochłonne, co zniechęca użytkowników do korzystania z efektywnej metody nauki, jaką jest spaced repetition. Użytkownicy oczekują szybkiego i wygodnego sposobu na generowanie fiszek, który pozwoli im skupić się na nauce, a nie na długotrwałym procesie tworzenia materiałów edukacyjnych.
 
 ## 3. Wymagania funkcjonalne
+
 1. Automatyczne generowanie fiszek:
    - Użytkownik wprowadza tekst o długości od 1000 do 10000 znaków.
    - Aplikacja wysyła tekst do modelu LLM za pośrednictwem API.
@@ -74,6 +77,7 @@ Funkcjonalności, które NIE wchodzą w zakres MVP:
   - W przypadku problemów z API lub braku odpowiedzi modelu, użytkownik zobaczy stosowny komunikat o błędzie.
 
 ### US-003
+
 - ID: US-003
 - Tytuł: Recenzja kandydatów na fiszki generowanych przez AI
 - Opis: Jako zalogowany użytkownik chcę mieć możliwość recenzji wygenerowanych przez AI fiszek, tak aby móc je zaakceptować, ewentualnie edytować lub odrzucić przed zapisem.
@@ -84,6 +88,7 @@ Funkcjonalności, które NIE wchodzą w zakres MVP:
   - Po zatwierdzeniu wybranych fiszek użytkownik może kliknąć przycisk zapisu i dodać je do bazy danych.
 
 ### US-004
+
 - ID: US-004
 - Tytuł: Zarządzanie zapisanymi fiszkami
 - Opis: Jakozalogowany użytkownik chcę przeglądać, wyszukiwać, edytować oraz usuwać zapisane fiszki, aby móc utrzymywać aktualność i porządek w mojej bazie wiedzy.
@@ -97,6 +102,7 @@ Funkcjonalności, które NIE wchodzą w zakres MVP:
   - W przypadku błędu podczas edycji, zapisywania lub usuwania fiszki, użytkownik otrzyma odpowiedni komunikat o błędzie.
 
 ### US-005
+
 - ID: US-005
 - Tytuł: Rejestracja użytkownika
 - Opis: Jako użytkownik chcę mieć możliwość rejestracji, aby utworzyć konto i uzyskać dostęp do aplikacji.
@@ -107,6 +113,7 @@ Funkcjonalności, które NIE wchodzą w zakres MVP:
   - W przypadku nieudanej rejestracji, użytkownik zobaczy komunikat o błędzie z instrukcjami.
 
 ### US-006
+
 - ID: US-006
 - Tytuł: Logowanie użytkownika
 - Opis: Jako użytkownik chcę mieć możliwość logowania, aby uzyskać dostęp do moich fiszek i funkcji aplikacji.
@@ -117,6 +124,7 @@ Funkcjonalności, które NIE wchodzą w zakres MVP:
   - W przypadku nieudanego logowania, użytkownik zobaczy komunikat o błędzie z instrukcjami.
 
 ### US-007
+
 - ID: US-007
 - Tytuł: Logowanie akcji systemowych
 - Opis: Jako administrator chcę, aby system logował wszystkie działania użytkowników (generowanie, akceptacja, edycja, odrzucenie fiszek), aby móc analizować efektywność oraz monitorować wykorzystanie funkcjonalności.
@@ -127,6 +135,7 @@ Funkcjonalności, które NIE wchodzą w zakres MVP:
   - W przypadku wystąpienia problemów z logowaniem akcji systemowych, administrator otrzyma stosowny komunikat o błędzie.
 
 ### US-008
+
 - ID: US-008
 - Tytuł: Sesja nauki z algorytmem powtórek
 - Opis: Jako zalogowany użytkownik chcę rozpocząć sesję nauki z algorytmem powtórek, aby efektywnie korzystać z metody spaced repetition.
@@ -138,5 +147,6 @@ Funkcjonalności, które NIE wchodzą w zakres MVP:
   - Następnie algorytm pokazuje kolejną fiszkę w ramach sesji nauki
 
 ## 6. Metryki sukcesu
+
 - Minimum 75% fiszek wygenerowanych przez AI jest akceptowane przez użytkowników.
 - Użytkownicy tworzą co najmniej 75% fiszek przy użyciu funkcji generowania przez AI.

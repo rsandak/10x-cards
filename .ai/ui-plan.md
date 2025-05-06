@@ -7,6 +7,7 @@ System interfejsu użytkownika został zaprojektowany jako centralny dashboard, 
 ## 2. Lista widoków
 
 ### 2.1 Ekran autoryzacji (logowania/rejestracji)
+
 - Ścieżka widoku: `/login` (oraz `/register`)
 - Główny cel: Umożliwienie użytkownikowi uwierzytelnienia oraz stworzenia konta.
 - Kluczowe informacje: Formularze zbierające email, hasło (oraz potwierdzenie hasła dla rejestracji), komunikaty walidacyjne błędów.
@@ -18,6 +19,7 @@ System interfejsu użytkownika został zaprojektowany jako centralny dashboard, 
   - Zabezpieczenia JWT
 
 ### 2.2 Widok generowania fiszek
+
 - Ścieżka widoku: `/generate`
 - Główny cel: Umożliwienie użytkownikowi automatycznego generowania fiszek przez AI i ich rewizji (zaakceptuj, edytuj, odrzuć).
 - Kluczowe informacje: Formularz do wprowadzania tekstu o długości 1000-10000 znaków, dynamiczna walidacja, blokada przycisku podczas przetwarzania, komunikaty błędów, oraz przyciski akcpetacji, edycji lub odrzucenia dla kadej fiszki.
@@ -28,6 +30,7 @@ System interfejsu użytkownika został zaprojektowany jako centralny dashboard, 
   - Wsparcie dla klawiatury oraz czytników ekranu.
 
 ### 2.3 Widok listy fiszek (Moje fiszki)
+
 - Ścieżka widoku: `/flashcards`
 - Główny cel: Zarządzanie istniejącymi fiszkami oraz możliwość ręcznego dodawania nowych fiszek.
 - Kluczowe informacje: Lista fiszek wyświetlająca "przód" i "tył" fiszki z możliwością edycji lub usunięcia fiszki.
@@ -39,6 +42,7 @@ System interfejsu użytkownika został zaprojektowany jako centralny dashboard, 
   - Potwierdzenie usunięcia
 
 ### 2.4 Modal dodawania fiszek
+
 - Ścieżka widoku: Otwierany z widoku listy fiszek (overlay) po kliknięciu przycisku "Dodaj fiszkę"
 - Główny cel: Umożliwienie użytkownikowi dodania nowej fiszki poprzez formularz w modalu.
 - Kluczowe informacje: Formularz umożliwiający wprowadzenie treści nowej fiszki, z ograniczeniami (przód: max 200 znaków, tył: max 500 znaków), inline walidacja oraz przyciski akcji (zapisz, anuluj).
@@ -49,6 +53,7 @@ System interfejsu użytkownika został zaprojektowany jako centralny dashboard, 
   - Natychmiastowa walidacja danych przed zapisem.
 
 ### 2.5 Modal do edycji fiszek
+
 - Ścieżka widoku: Otwierany w widoku listy fiszek (overlay)
 - Główny cel: Umożliwienie użytkownikowi edycji treści fiszek po wybraniu opcji "edytuj".
 - Kluczowe informacje: Pola do edycji treści fiszki – "przód" (max 200 znaków) oraz "tył" (max 500 znaków).
@@ -83,7 +88,7 @@ System interfejsu użytkownika został zaprojektowany jako centralny dashboard, 
 ## 5. Kluczowe komponenty
 
 - Formularz uwierzytelniania
-  - komponenty logowania i rejestracji z obsługą walidacji. 
+  - komponenty logowania i rejestracji z obsługą walidacji.
 - Formularz generowania fiszek:
   - Umożliwia wprowadzanie tekstu z dynamiczną walidacją (1000-10000 znaków),
   - Blokuje przycisk podczas przetwarzania,
