@@ -88,4 +88,4 @@ Kluczowe komponenty i moduły:
   - Middleware do weryfikacji sesji
   - Mechanizmy bezpieczeństwa (przechowywanie tokenów w ciasteczkach httpOnly)
 
-To rozwiązanie zapewni bezpieczną i przejrzystą obsługę procesu rejestracji, logowania, wylogowania oraz odzyskiwania hasła, a także płynne zarządzanie stanem sesji użytkownika zgodnie z wymaganiami produktu i stosowanym stackiem technologicznym. 
+To rozwiązanie zapewni bezpieczną i przejrzystą obsługę procesu rejestracji, logowania, wylogowania oraz odzyskiwania hasła, a także płynne zarządzanie stanem sesji użytkownika zgodnie z wymaganiami produktu i stosowanym stackiem technologicznym.
