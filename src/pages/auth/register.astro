@@ -1,0 +1,14 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import AuthLayout from "../../layouts/AuthLayout.astro";
+import { RegisterForm } from "../../components/auth/RegisterForm";
+---
+
+<Layout title="Create Account - 10x Cards">
+  <AuthLayout>
+    <Fragment slot="title">Create an account</Fragment>
+    <Fragment slot="description">Enter your email below to create your account</Fragment>
+
+    <RegisterForm client:load onSubmit={() => {}} />
+  </AuthLayout>
+</Layout>

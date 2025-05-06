@@ -1,0 +1,14 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import AuthLayout from "../../layouts/AuthLayout.astro";
+import { LoginForm } from "../../components/auth/LoginForm";
+---
+
+<Layout title="Sign In - 10x Cards">
+  <AuthLayout>
+    <Fragment slot="title">Welcome back</Fragment>
+    <Fragment slot="description">Sign in to your account to continue</Fragment>
+
+    <LoginForm client:load onSubmit={() => {}} />
+  </AuthLayout>
+</Layout>

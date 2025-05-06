@@ -1,0 +1,22 @@
+---
+
+---
+
+<div class="container flex items-center justify-center min-h-[calc(100vh-4rem)]">
+  <main class="w-full max-w-md space-y-6">
+    <div class="flex flex-col space-y-2 text-center">
+      <h1 class="text-2xl font-semibold tracking-tight">
+        <slot name="title" />
+      </h1>
+      <p class="text-sm text-muted-foreground">
+        <slot name="description" />
+      </p>
+    </div>
+
+    <slot />
+
+    <div class="text-sm text-center text-muted-foreground">
+      <slot name="footer" />
+    </div>
+  </main>
+</div>
