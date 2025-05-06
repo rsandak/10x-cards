@@ -2,6 +2,8 @@ import type { APIRoute } from "astro";
 import { z } from "zod";
 import type { GenerateFlashcardsCommand } from "../../types";
 import { GenerationService } from "../../lib/services/generation.service";
+import { OpenRouterService } from "../../lib/openrouter.service";
+import { getOpenRouterConfig } from "../../lib/config/openrouter.config";
 import { DEFAULT_USER_ID, supabaseClient } from "../../db/supabase.client";
 
 export const prerender = false;
@@ -33,7 +35,11 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const generationService = new GenerationService(supabaseClient);
+    // Initialize OpenRouter service with API key from environment
+    const openRouter = new OpenRouterService(getOpenRouterConfig(import.meta.env.OPENROUTER_API_KEY));
+
+    // Initialize generation service with OpenRouter
+    const generationService = new GenerationService(supabaseClient, openRouter);
     const result = await generationService.generateFlashcards(body.source_text, DEFAULT_USER_ID);
 
     return new Response(JSON.stringify(result), {
