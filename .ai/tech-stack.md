@@ -1,4 +1,4 @@
-# Tech stack 
+# Tech stack
 
 Frontend - Astro z React dla komponentów interaktywnych:
 

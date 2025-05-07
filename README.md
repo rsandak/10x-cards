@@ -23,23 +23,31 @@
 ## Getting Started Locally
 
 1. **Clone the Repository:**
+
    ```bash
    git clone https://github.com/rsandak/10x-cards.git
    cd 10x-cards
    ```
+
 2. **Install the Correct Node Version:**
    The project uses the Node version specified in the `.nvmrc` file.
+
    ```bash
    nvm use
    ```
+
 3. **Install Dependencies:**
+
    ```bash
    npm install
    ```
+
 4. **Run the Development Server:**
+
    ```bash
    npm run dev
    ```
+
 5. **Open the Application:**
    Open your browser and navigate to [http://localhost:3000](http://localhost:3000).
 
@@ -82,4 +90,4 @@ The project is currently in the MVP stahe and under active development.
 
 ## License
 
-This project is licensed under the MIT License. 
+This project is licensed under the MIT License.
