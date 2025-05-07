@@ -4,7 +4,7 @@ import type { GenerateFlashcardsCommand } from "../../types";
 import { GenerationService } from "../../lib/services/generation.service";
 import { OpenRouterService } from "../../lib/openrouter.service";
 import { getOpenRouterConfig } from "../../lib/config/openrouter.config";
-import { DEFAULT_USER_ID, supabaseClient } from "../../db/supabase.client";
+import { supabaseClient } from "../../db/supabase.client";
 
 export const prerender = false;
 
@@ -16,8 +16,15 @@ const generateFlashcardsSchema = z.object({
     .max(10000, "Text must not exceed 10000 characters"),
 });
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
+    if (!locals.user?.id) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
     // Parse and validate request body
     const body = (await request.json()) as GenerateFlashcardsCommand;
     const validationResult = generateFlashcardsSchema.safeParse(body);
@@ -40,7 +47,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Initialize generation service with OpenRouter
     const generationService = new GenerationService(supabaseClient, openRouter);
-    const result = await generationService.generateFlashcards(body.source_text, DEFAULT_USER_ID);
+    const result = await generationService.generateFlashcards(body.source_text, locals.user.id);
 
     return new Response(JSON.stringify(result), {
       status: 201,
