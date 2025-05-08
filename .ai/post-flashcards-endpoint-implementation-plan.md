@@ -82,8 +82,9 @@ Endpoint umożliwia tworzenie nowych fiszek – pojedynczo lub zbiorczo. Obsług
 
 1. Implementacja walidatora wejścia przy użyciu zod.
 2. Implementacja warstwy service (`flashcard.service`), która obejmuje:
-  - Wstawienie danych do tabeli `flashcards` za pomocą Supabase.
-  - Zaktualizowanie danych generacji w tabeli `generations` przy użyciu Supabase (context.locals), z wykorzystaniem serwisu `generation.service`.
+
+- Wstawienie danych do tabeli `flashcards` za pomocą Supabase.
+- Zaktualizowanie danych generacji w tabeli `generations` przy użyciu Supabase (context.locals), z wykorzystaniem serwisu `generation.service`.
 
 3. Integracja logiki endpointu w Astro route z wykorzystaniem:
 

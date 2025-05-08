@@ -16,6 +16,11 @@
   - Supabase (PostgreSQL, authentication, and backend-as-a-service)
 - **AI Integration:**
   - Openrouter.ai (access to multiple language models such as OpenAI, Anthropic, and Google)
+- **Testing:**
+  - Vitest (unit and component testing)
+  - React Testing Library (component testing)
+  - Playwright (end-to-end testing)
+  - codecov (test coverage)
 - **CI/CD & Hosting:**
   - GitHub Actions
   - DigitalOcean (Docker-based deployment)
@@ -60,6 +65,13 @@
 - **`npm run lint`**: Runs ESLint to check for code issues.
 - **`npm run lint:fix`**: Runs ESLint and automatically fixes issues.
 - **`npm run format`**: Formats the code using Prettier.
+- **`npm test`** or **`npm run test`**: Runs all unit and component tests with Vitest.
+- **`npm run test:watch`**: Runs Vitest in watch mode for development.
+- **`npm run test:coverage`**: Runs tests with coverage reporting.
+- **`npm run test:e2e`**: Runs end-to-end tests with Playwright.
+- **`npm run test:e2e:ui`**: Runs Playwright tests with UI mode.
+- **`npm run test:e2e:codegen`**: Generates Playwright tests with codegen tool.
+- **`npm run test:e2e:update-snapshots`**: Updates visual snapshots for Playwright tests.
 
 ## Project Scope
 
