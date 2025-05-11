@@ -139,16 +139,16 @@ export default function FlashcardGenerationView() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8" data-test-id="flashcard-generation-container">
       <GenerationForm ref={formRef} onSubmit={handleGenerateFlashcards} isLoading={isLoading} />
 
       {errorMessage && (
-        <Alert variant="destructive">
-          <AlertDescription>{errorMessage}</AlertDescription>
+        <Alert variant="destructive" data-test-id="generation-error-alert">
+          <AlertDescription data-test-id="generation-error-message">{errorMessage}</AlertDescription>
         </Alert>
       )}
 
-      {isLoading && <LoadingIndicator />}
+      {isLoading && <LoadingIndicator data-test-id="generation-loading-indicator" />}
 
       <FlashcardCandidatesList
         candidates={candidates}
@@ -158,7 +158,13 @@ export default function FlashcardGenerationView() {
       />
 
       {candidates.length > 0 && generationId && (
-        <BulkSaveButton candidates={candidates} generationId={generationId} onSave={handleSave} disabled={isLoading} />
+        <BulkSaveButton
+          candidates={candidates}
+          generationId={generationId}
+          onSave={handleSave}
+          disabled={isLoading}
+          data-test-id="bulk-save-button"
+        />
       )}
     </div>
   );

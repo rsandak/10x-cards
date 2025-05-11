@@ -1,7 +1,17 @@
 import { defineConfig, devices } from "@playwright/test";
+import path from "path";
+import dotenv from "dotenv";
+import fs from "fs";
+
+// Only load .env.test if it exists
+const envPath = path.resolve(process.cwd(), ".env.test");
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath });
+}
 
 export default defineConfig({
-  testDir: "./e2e",
+  testDir: "./",
+  testMatch: ["**/e2e/**/*.spec.ts", "**/tests/e2e/**/*.spec.ts"],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,

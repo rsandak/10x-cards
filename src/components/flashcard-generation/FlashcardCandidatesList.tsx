@@ -21,15 +21,15 @@ export function FlashcardCandidatesList({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4" data-test-id="flashcard-candidates-list">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Generated Flashcards</h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-muted-foreground" data-test-id="selected-flashcards-counter">
           {candidates.filter((c) => c.status === "accepted" || c.status === "edited").length} of {candidates.length}{" "}
           selected
         </p>
       </div>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" data-test-id="flashcard-candidates-grid">
         {candidates.map((candidate, index) => (
           <FlashcardCandidateItem
             key={index}
@@ -37,6 +37,7 @@ export function FlashcardCandidatesList({
             onStatusChange={(status) => onCandidateStatusChange(index, status)}
             onEdit={(front, back) => onCandidateEdit(index, front, back)}
             disabled={isLoading}
+            data-test-id={`flashcard-candidate-${index}`}
           />
         ))}
       </div>

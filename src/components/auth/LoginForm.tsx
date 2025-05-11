@@ -49,11 +49,22 @@ export function LoginForm() {
   };
 
   return (
-    <div className="space-y-6">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <div className="space-y-6" data-test-id="login-form-container">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" data-test-id="login-form">
         <div className="space-y-2">
-          <Input {...register("email")} type="email" placeholder="Email" aria-label="Email" disabled={isSubmitting} />
-          {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+          <Input
+            {...register("email")}
+            type="email"
+            placeholder="Email"
+            aria-label="Email"
+            disabled={isSubmitting}
+            data-test-id="login-email-input"
+          />
+          {errors.email && (
+            <p className="text-sm text-red-500" data-test-id="login-email-error">
+              {errors.email.message}
+            </p>
+          )}
         </div>
 
         <div className="space-y-2">
@@ -63,26 +74,39 @@ export function LoginForm() {
             placeholder="Password"
             aria-label="Password"
             disabled={isSubmitting}
+            data-test-id="login-password-input"
           />
-          {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
+          {errors.password && (
+            <p className="text-sm text-red-500" data-test-id="login-password-error">
+              {errors.password.message}
+            </p>
+          )}
         </div>
 
         {serverError && (
-          <Alert variant="destructive">
+          <Alert variant="destructive" data-test-id="login-error">
             <AlertDescription>{serverError}</AlertDescription>
           </Alert>
         )}
 
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
+        <Button type="submit" className="w-full" disabled={isSubmitting} data-test-id="login-submit-button">
           {isSubmitting ? "Signing in..." : "Sign in"}
         </Button>
       </form>
 
       <div className="flex justify-between text-sm">
-        <a href="/auth/register" className="text-muted-foreground hover:text-primary">
+        <a
+          href="/auth/register"
+          className="text-muted-foreground hover:text-primary"
+          data-test-id="create-account-link"
+        >
           Create account
         </a>
-        <a href="/auth/forgot-password" className="text-muted-foreground hover:text-primary">
+        <a
+          href="/auth/forgot-password"
+          className="text-muted-foreground hover:text-primary"
+          data-test-id="forgot-password-link"
+        >
           Forgot password?
         </a>
       </div>
