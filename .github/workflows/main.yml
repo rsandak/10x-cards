@@ -5,7 +5,24 @@ on:
     branches: [ "master" ]
   workflow_dispatch:
 
-jobs:      
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run ESLint
+        run: npm run lint
+
   unit-tests:
     runs-on: ubuntu-latest
     steps:
@@ -15,12 +32,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          
-      - name: Restore node modules
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
       
       - name: Run unit tests
         run: npm run test
@@ -32,9 +47,9 @@ jobs:
           name: unit-test-results
           path: test-results/
           retention-days: 30
-
+  
   build:
-    needs: [unit-tests]
+    needs: [lint, unit-tests]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,12 +58,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          
-      - name: Restore node modules
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
       
       - name: Build production
         run: npm run build
