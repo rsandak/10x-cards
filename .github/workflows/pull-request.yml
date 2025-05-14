@@ -1,0 +1,54 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+
+  unit-tests:
+    needs: lint
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run test
+
+  status-comment:
+    needs: [unit-tests]
+    name: PR Status Comment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create Status Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo, number } = context.issue;
+            const message = `✅ All checks have passed successfully!
+            
+            - ✓ Linting
+            - ✓ Unit Tests`;
+            
+            github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: number,
+              body: message
+            }); 
